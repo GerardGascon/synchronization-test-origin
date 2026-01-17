@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - name: setup git and clone brew formula
+      - name: Clone destination repo
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
@@ -24,14 +24,14 @@ jobs:
           git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${DEST_REPO_OWNER}/${DEST_REPO}.git
           cd ${DEST_REPO}
 
-          git checkout -b ${{ github.repository.name }}-${{ github.run_number }}
+          git checkout -b ${{ github.event.repository.name }}-${{ github.run_number }}
 
       - name: Copy elements
         run: |
           mkdir -p ${DEST_REPO}/${DEST_PATH}
           cp -a ${ORIGIN_PATH}/. ${DEST_REPO}/${DEST_PATH}
 
-      - name: Create Pull Request to homebrew repo
+      - name: Create Pull Request to destination repo
         run: |
           cd ${DEST_REPO}
           
