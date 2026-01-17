@@ -2,7 +2,7 @@ name: Synchronize Repository
 on:
   push:
     paths:
-      - folder-to-synchronize
+      - 'folder-to-synchronize/**'
 
 env:
   DEST_REPO: synchronization-test-destination
