@@ -2,6 +2,8 @@
 
 An experiment to synchronize two repos via automated PR creation.
 
+I used this repository for this experiment: [GerardGascon/synchronization-test-destination](https://github.com/GerardGascon/synchronization-test-destination)
+
 ## Setup
 
 1. Create a Fine-grained personal access token with these permissions:
