@@ -7,6 +7,7 @@ on:
 env:
   DEST_REPO: synchronization-test-destination
   DEST_REPO_OWNER: GerardGascon
+  DEST_REPO_BRANCH: main
   ORIGIN_PATH: folder-to-synchronize
   DEST_PATH: folder-synchronized
   PR_MESSAGE: Update files in some folder
@@ -47,4 +48,4 @@ jobs:
             -H "Accept: application/vnd.github+json" \
             -H "Content-Type: application/json" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
-            -d "{\"title\": \"${PR_MESSAGE}\",\"head\": \"$BRANCH_NAME\",\"base\": \"master\",\"body\": \"Automated update\"}"
+            -d "{\"title\": \"${PR_MESSAGE}\",\"head\": \"$BRANCH_NAME\",\"base\": \"${DEST_REPO_BRANCH}\",\"body\": \"Automated update\"}"
