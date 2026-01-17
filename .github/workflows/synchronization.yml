@@ -21,7 +21,7 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
 
-          git clone https://x-access-token:${{ secrets.DEST_REPO_TOKEN }}@github.com/${DEST_REPO_OWNER}/${DEST_REPO}.git
+          git clone https://${{ secrets.DEST_REPO_TOKEN }}@github.com/${DEST_REPO_OWNER}/${DEST_REPO}.git
           cd ${DEST_REPO}
 
           git checkout -b ${{ github.event.repository.name }}-${{ github.run_number }}
@@ -34,6 +34,8 @@ jobs:
       - name: Create Pull Request to destination repo
         run: |
           cd ${DEST_REPO}
+          
+          git remote set-url origin https://${{ secrets.DEST_REPO_TOKEN }}@github.com/${DEST_REPO_OWNER}/${DEST_REPO}.git
           
           BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
           git add .
