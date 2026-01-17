@@ -25,6 +25,7 @@ jobs:
           git clone https://${{ secrets.DEST_REPO_TOKEN }}@github.com/${DEST_REPO_OWNER}/${DEST_REPO}.git
           cd ${DEST_REPO}
 
+          git checkout ${DEST_REPO_BRANCH}
           git checkout -b ${{ github.event.repository.name }}-${{ github.run_number }}
 
       - name: Copy elements
